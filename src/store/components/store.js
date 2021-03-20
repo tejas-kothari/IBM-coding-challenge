@@ -68,7 +68,14 @@ export const Store = ({ page, notFound }) => {
           <Link className="header-child">Contact Us</Link>
           <Link className="header-child" to="/cart" onClick={handleCartIcon}>
             <img className="header-icon" src="/cart.png" /> Cart (
-            {cart ? cart.length : 0})
+            {cart
+              ? cart
+                  .map((x) => parseInt(x.quantity))
+                  .reduce(function (a, b) {
+                    return a + b;
+                  }, 0)
+              : 0}
+            )
           </Link>
         </header>
       </div>
